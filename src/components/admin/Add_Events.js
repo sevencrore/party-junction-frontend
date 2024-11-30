@@ -18,7 +18,8 @@ const Event = () => {
     img2: null,
     img3: null,
     bg_img: null,
-    area:"",
+    area: "",
+    date: "",
     location_description: "",
     location_lat: "",
     location_lang: "",
@@ -72,6 +73,7 @@ const Event = () => {
     formData.append("city_id", input.city_id); // Ensure city_id is included
     formData.append("email", input.email);
     formData.append("area", input.area);
+    formData.append("date", input.date);
 
     // Append the image files if they exist
     if (input.img) {
@@ -95,7 +97,7 @@ const Event = () => {
 
     try {
       const res = await axios.post(`${process.env.REACT_APP_HOST}/event/create`,
-        
+
         formData,
         {
           headers: {
@@ -321,6 +323,24 @@ const Event = () => {
                 id="bg_img"
               />
             </div>
+
+            <div className="mb-3">
+  <label htmlFor="date" className="form-label">
+    Event Date
+  </label>
+  <input
+    type="date"
+    name="date"
+    value={input.date}
+    onChange={handleInputChange} // Updates the state dynamically
+    className="form-control"
+    id="date"
+    placeholder="Select Event Date" // Optional placeholder for better UX
+  />
+</div>
+
+
+
 
             {/* Location Description */}
             <div className="mb-3">
