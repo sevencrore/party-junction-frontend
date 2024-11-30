@@ -17,6 +17,8 @@ const ListEvent = () => {
     date: "",
     price: "",
     slots: "",
+    language:"",
+    time:"",
     event_id: "", // The event ID will be set when an event is selected
   });
 
@@ -83,6 +85,8 @@ const ListEvent = () => {
         date: "",
         price: "",
         slots: "",
+        language:"",
+        time:"",
         event_id: eventId, // Set the event_id to the selected event
       });
     }
@@ -148,6 +152,8 @@ const ListEvent = () => {
           date: "",
           price: "",
           slots: "",
+          language:"",
+          time:"",
           event_id: "", // Reset the event_id
         });
 
@@ -443,6 +449,38 @@ const ListEvent = () => {
                             setEventDetails({
                               ...eventDetails,
                               price: e.target.value,
+                            })
+                          }
+                        />
+                      </Form.Group>
+                    </Col>
+                  </Row>
+                  <Row>
+                  <Col md={6}>
+                      <Form.Group controlId="time">
+                        <Form.Label>Time</Form.Label>
+                        <Form.Control
+                          type="text"
+                          value={eventDetails.time}
+                          onChange={(e) =>
+                            setEventDetails({
+                              ...eventDetails,
+                              time: e.target.value,
+                            })
+                          }
+                        />
+                      </Form.Group>
+                    </Col>
+                    <Col md={6}>
+                      <Form.Group controlId="langauage">
+                        <Form.Label>Language</Form.Label>
+                        <Form.Control
+                          type="text"
+                          value={eventDetails.language}
+                          onChange={(e) =>
+                            setEventDetails({
+                              ...eventDetails,
+                              language: e.target.value,
                             })
                           }
                         />
