@@ -72,6 +72,8 @@ const BookEvent = ({ history }) => {
                 user_id,
                 price: price * numberOfMembers,
                 displayName,
+                time:eventDetails.time,
+                language:eventDetails.language,
             };
 
             console.log("Booking Data:", bookingData); // Log the data to verify it's correct
@@ -101,7 +103,7 @@ const BookEvent = ({ history }) => {
         <div className="container my-5">
             <Row className="g-4">
                 {eventDetails.map((event, index) => {
-                    const { date, price, slots, is_active, is_deleted, _id, event_id } = event;
+                    const { date, price, slots, is_active, is_deleted, _id, event_id,language,time, } = event;
                     const eventDate = new Date(date).toLocaleString();
                     const isActive = is_active === '1' || is_active === 1;
                     const isDeleted = is_deleted === '1' || is_deleted === 1;
@@ -118,6 +120,12 @@ const BookEvent = ({ history }) => {
                                     </Card.Subtitle>
                                     <Card.Text>
                                         <strong>Price:</strong> &#x20B9;{price}
+                                    </Card.Text>
+                                    <Card.Text>
+                                        <strong>Language:</strong> {language}
+                                    </Card.Text>
+                                    <Card.Text>
+                                        <strong>Time:</strong> {time}
                                     </Card.Text>
                                     <Card.Text>
                                         <strong>Available Slots:</strong> {slots}
