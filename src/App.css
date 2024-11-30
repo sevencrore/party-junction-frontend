@@ -1,0 +1,11 @@
+body{
+  font-family: 'Roboto';  
+  
+}
+
+thead.sticky-top {
+  background-color: #343a40; /* Match the Bootstrap dark theme */
+  z-index: 1; /* Ensure it stays above the table rows */
+}
+
+

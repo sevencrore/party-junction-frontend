@@ -1,0 +1,12 @@
+.table-responsive {
+  overflow-x: auto;
+}
+
+.sticky-col {
+  position: -webkit-sticky;
+  position: sticky;
+  right: 0;
+  background-color: #fff; /* Ensure the column has a background color */
+  z-index: 10; /* Ensure it's above the other columns */
+  box-shadow: -2px 0 2px -2px rgba(0,0,0,.1); /* Optional: add shadow for better separation */
+}
