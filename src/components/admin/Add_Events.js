@@ -22,6 +22,7 @@ const Event = () => {
     bg_img: null,
     area: "",
     date: "",
+    full:"",
     location_description: "",
     location_lat: "",
     location_lang: "",
@@ -75,6 +76,7 @@ const Event = () => {
     formData.append("city_id", input.city_id); // Ensure city_id is included
     formData.append("email", input.email);
     formData.append("area", input.area);
+    formData.append("full", input.full);
     formData.append("date", input.date);
 
     // Append the image files if they exist
@@ -358,6 +360,21 @@ const Event = () => {
                 className="form-control"
                 id="area"
                 placeholder="Enter Area"
+              />
+            </div>
+            {/* Location Description */}
+            <div className="mb-3">
+              <label htmlFor="area" className="form-label">
+                Full percentage
+              </label>
+              <input
+                type="number"
+                name="full"
+                value={input.full}
+                onChange={handleInputChange}
+                className="form-control"
+                id="full"
+                placeholder="Enter percentage"
               />
             </div>
             {/* Location Description */}
