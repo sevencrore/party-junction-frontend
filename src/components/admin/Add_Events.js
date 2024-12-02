@@ -3,6 +3,8 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { Form, Row, Col, Button } from "react-bootstrap";
 import withAdminCheck from "./withAdminCheck";
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css'; // Import the styles
 
 const Event = () => {
   const history = useHistory();
@@ -233,15 +235,16 @@ const Event = () => {
               <label htmlFor="description" className="form-label">
                 Description
               </label>
-              <input
-                type="text"
-                name="description"
-                value={input.description}
-                onChange={handleInputChange}
-                className="form-control"
-                id="description"
-                placeholder="Enter Event Title"
-              />
+              <ReactQuill
+  value={input.description}
+  onChange={(value) =>
+    setInput((prevInput) => ({
+      ...prevInput,
+      description: value, // Updates 'description' field in state
+    }))
+  }
+/>
+
             </div>
 
             {/* Host Name */}

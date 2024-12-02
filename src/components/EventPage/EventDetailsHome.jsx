@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { Container, Row, Col, Button, Spinner, Carousel } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import 'react-quill/dist/quill.snow.css';
 
 const EventDetailsHome = () => {
   const { eventId } = useParams();
@@ -169,7 +170,7 @@ const EventDetailsHome = () => {
         <Row>
           <Col xs={12}>
             <h2>Description</h2>
-            <p>{event.description}</p>
+            <div dangerouslySetInnerHTML={{ __html: event.description }} /> {/* Render the HTML content */}
           </Col>
         </Row>
       </Container>
