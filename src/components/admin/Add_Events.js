@@ -236,14 +236,14 @@ const Event = () => {
                 Description
               </label>
               <ReactQuill
-  value={input.description}
-  onChange={(value) =>
-    setInput((prevInput) => ({
-      ...prevInput,
-      description: value, // Updates 'description' field in state
-    }))
-  }
-/>
+                value={input.description}
+                onChange={(value) =>
+                  setInput((prevInput) => ({
+                    ...prevInput,
+                    description: value, // Updates 'description' field in state
+                  }))
+                }
+              />
 
             </div>
 
@@ -328,19 +328,19 @@ const Event = () => {
             </div>
 
             <div className="mb-3">
-  <label htmlFor="date" className="form-label">
-    Event Date
-  </label>
-  <input
-    type="date"
-    name="date"
-    value={input.date}
-    onChange={handleInputChange} // Updates the state dynamically
-    className="form-control"
-    id="date"
-    placeholder="Select Event Date" // Optional placeholder for better UX
-  />
-</div>
+              <label htmlFor="date" className="form-label">
+                Event Date
+              </label>
+              <input
+                type="date"
+                name="date"
+                value={input.date}
+                onChange={handleInputChange} // Updates the state dynamically
+                className="form-control"
+                id="date"
+                placeholder="Select Event Date" // Optional placeholder for better UX
+              />
+            </div>
 
 
 

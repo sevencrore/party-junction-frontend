@@ -9,7 +9,7 @@ const EventDetailsHome = () => {
   const history = useHistory();
   const [event, setEvent] = useState(null);
   const [loading, setLoading] = useState(true);
-  const percentage = 85; // Progress value
+  const [percentage, setPercentage] = useState(null); // Progress value
   const radius = 20; // Radius of the circle
   const circumference = 2 * Math.PI * radius; // Circumference of the circle
   const strokeDashoffset = circumference - (circumference * percentage) / 100; // Adjusting based on percentage
@@ -18,6 +18,7 @@ const EventDetailsHome = () => {
     fetch(`${process.env.REACT_APP_HOST}/event/${eventId}`, { mode: "cors" })
       .then((res) => res.json())
       .then((data) => {
+        setPercentage(data.full ?? 85);
         setEvent(data);
         setLoading(false);
       })
