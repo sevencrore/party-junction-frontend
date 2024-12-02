@@ -17,8 +17,8 @@ const ListEvent = () => {
     date: "",
     price: "",
     slots: "",
-    language:"",
-    time:"",
+    language: "",
+    time: "",
     event_id: "", // The event ID will be set when an event is selected
   });
 
@@ -85,8 +85,8 @@ const ListEvent = () => {
         date: "",
         price: "",
         slots: "",
-        language:"",
-        time:"",
+        language: "",
+        time: "",
         event_id: eventId, // Set the event_id to the selected event
       });
     }
@@ -152,8 +152,8 @@ const ListEvent = () => {
           date: "",
           price: "",
           slots: "",
-          language:"",
-          time:"",
+          language: "",
+          time: "",
           event_id: "", // Reset the event_id
         });
 
@@ -249,13 +249,8 @@ const ListEvent = () => {
                             <Form.Label>Event Title</Form.Label>
                             <Form.Control
                               type="text"
-                              value={selectedEvent._id}
-                              onChange={(e) =>
-                                setSelectedEvent({
-                                  ...selectedEvent,
-                                  title: e.target.value,
-                                })
-                              }
+                              value={selectedEvent.title}
+                              readOnly
                             />
                           </Form.Group>
                         </Col>
@@ -343,6 +338,21 @@ const ListEvent = () => {
                           </Form.Group>
                         </Col>
                       </Row>
+                      <Col md={6}>
+                        <Form.Group controlId="full">
+                          <Form.Label>Full percentage</Form.Label>
+                          <Form.Control
+                            type="number"
+                            value={selectedEvent.full}
+                            onChange={(e) =>
+                              setSelectedEvent({
+                                ...selectedEvent,
+                                full: e.target.value,
+                              })
+                            }
+                          />
+                        </Form.Group>
+                      </Col>
                       <Form.Group controlId="location">
                         <Form.Label>Location Description</Form.Label>
                         <Form.Control
@@ -392,9 +402,25 @@ const ListEvent = () => {
                       {selectedEvent.location_description}
                     </p>
                     <p>
+                      <strong>Full percentage :</strong>{" "}
+                      {selectedEvent.full} %
+                    </p>
+                    <p>
+                      <strong>Date:</strong>{" "}
+                      {selectedEvent.date}
+                    </p>
+                    <p>
                       <strong>City:</strong>{" "}
                       {cities.find((city) => city._id === selectedEvent.city_id)
                         ?.name || "N/A"}
+                    </p>
+                    <p>
+                      <strong>Location lat:</strong>{" "}
+                      {selectedEvent.location_lat?.$numberDecimal || "N/A"}
+                    </p>
+                    <p>
+                      <strong>Location lng:</strong>{" "}
+                      {selectedEvent.location_lang?.$numberDecimal || "N/A"}
                     </p>
                   </div>
                 )}
@@ -456,7 +482,7 @@ const ListEvent = () => {
                     </Col>
                   </Row>
                   <Row>
-                  <Col md={6}>
+                    <Col md={6}>
                       <Form.Group controlId="time">
                         <Form.Label>Time</Form.Label>
                         <Form.Control
