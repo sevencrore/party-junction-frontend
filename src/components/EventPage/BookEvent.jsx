@@ -104,7 +104,7 @@ const BookEvent = ({ history }) => {
             <Row className="g-4">
                 {eventDetails.map((event, index) => {
                     const { date, price, slots, is_active, is_deleted, _id, event_id,language,time, } = event;
-                    const eventDate = new Date(date).toLocaleString();
+                    const eventDate = new Date(date).toLocaleDateString();
                     const isActive = is_active === '1' || is_active === 1;
                     const isDeleted = is_deleted === '1' || is_deleted === 1;
                     const selectedMembersCount = selectedMembers[index] || 2; // Default to 2 members if none selected
