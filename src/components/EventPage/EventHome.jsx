@@ -70,7 +70,7 @@ const EventList = ({ events }) => {
                                     }}
                                 >
                                     <img
-                                        src={`${process.env.REACT_APP_HOST}${event.img}`}
+                                        src={`${process.env.REACT_APP_HOST}${event.bg_img}`}
                                         alt={event.title}
                                         className="img-fluid"
                                         style={{

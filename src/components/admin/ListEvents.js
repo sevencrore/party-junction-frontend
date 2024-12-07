@@ -8,6 +8,9 @@ const ListEvent = () => {
   const [events, setEvents] = useState([]); // To store events data
   const [vendors, setVendors] = useState([]); // To store vendor data
   const [categories, setCategories] = useState([]); // To store category data
+  const [title, setTitle] = useState([]);
+  const [host_name, setHost_name] = useState([]); 
+  const [location_description, setLocation_description] = useState([]);
   const [cities, setCities] = useState([]); // To store city data
   const [selectedEvent, setSelectedEvent] = useState(null); // To store selected event for view/edit
   const [isEditing, setIsEditing] = useState(false); // To toggle between view/edit modes
@@ -21,6 +24,20 @@ const ListEvent = () => {
     time: "",
     event_id: "", // The event ID will be set when an event is selected
   });
+  const [img, setimg] = useState(null); // To store selected image
+  const [img1, setimg1] = useState(null); // To store selected image
+  const [img2, setimg2] = useState(null); // To store selected image
+  const [img3, setimg3] = useState(null); // To store selected image
+  const [bg_img, setbg_img] = useState(null); // To store selected image
+  const [full, setfull] = useState(null); // To store selected image
+
+  const handleFullChange = (e) => {
+    const value = e.target.value; // Get the input value
+    console.log("Input value:", value); // Debug the raw input value
+    setfull(value !== "" ? Number(value) : null); // Set as number or null
+  };
+  
+  
 
   const formRef = useRef(null);
 
@@ -104,13 +121,27 @@ const ListEvent = () => {
       alert("No event selected for editing.");
       return;
     }
-
+    debugger;
     // Send updated event data to the API
+    const formData = new FormData();
+    formData.append("title", selectedEvent.title);
+    formData.append("host_name", selectedEvent.host_name);
+    formData.append("location_description", selectedEvent.location_description);
+    formData.append("vendor_id", selectedEvent.vendor_id);
+    formData.append("category_id", selectedEvent.category_id);
+    formData.append("city_id", selectedEvent.city_id);
+    formData.append("img", img);
+    formData.append("img1", img1);
+    formData.append("img2", img2);
+    formData.append("img3", img3);
+    formData.append("bg_img", bg_img);
+    formData.append("full", selectedEvent.full);
+    
+
     axios
-      .post(`${process.env.REACT_APP_HOST}/event/edit/${selectedEvent._id}`, selectedEvent)
+      .post(`${process.env.REACT_APP_HOST}/event/edit/${selectedEvent._id}`, formData)
       .then((response) => {
         console.log("Event updated:", response.data);
-
         // Update the events list with the edited event
         setEvents((prevEvents) =>
           prevEvents.map((event) =>
@@ -133,7 +164,7 @@ const ListEvent = () => {
   // Handle form submit for adding event details
   const handleSubmitEventDetails = (e) => {
     e.preventDefault();
-
+    debugger;
     // Check if event_id is set
     if (!eventDetails.event_id) {
       alert("Please select a valid event.");
@@ -353,6 +384,99 @@ const ListEvent = () => {
                           />
                         </Form.Group>
                       </Col>
+                      <Col md={6}>
+                        <Form.Group controlId="img">
+                          <Form.Label>Image 1</Form.Label>
+                          <Form.Control
+                            type="file"
+                            accept="image/*"
+                            onChange={(e) => {
+                              debugger;
+                              const file = e.target.files[0];
+                              setimg(file);
+                              setSelectedEvent({
+                                ...selectedEvent,
+                                img: URL.createObjectURL(file),
+                              });
+                            }}
+                          />
+                        </Form.Group>
+                      </Col>
+
+
+                      <Col md={6}>
+                        <Form.Group controlId="img1">
+                          <Form.Label>Image 2</Form.Label>
+                          <Form.Control
+                            type="file"
+                            accept="image/*"
+                            onChange={(e) => {
+                              debugger;
+                              const file = e.target.files[0];
+                              setimg1(file);
+                              setSelectedEvent({
+                                ...selectedEvent,
+                                img: URL.createObjectURL(file),
+                              });
+                            }}
+                          />
+                        </Form.Group>
+                      </Col>
+
+                      <Col md={6}>
+                        <Form.Group controlId="img2">
+                          <Form.Label>Image 3</Form.Label>
+                          <Form.Control
+                            type="file"
+                            accept="image/*"
+                            onChange={(e) => {
+                              const file = e.target.files[0];
+                              setimg2(file);
+                              setSelectedEvent({
+                                ...selectedEvent,
+                                img: URL.createObjectURL(file),
+                              });
+                            }}
+                          />
+                        </Form.Group>
+                      </Col>
+
+                      <Col md={6}>
+                        <Form.Group controlId="img3">
+                          <Form.Label>Image 4</Form.Label>
+                          <Form.Control
+                            type="file"
+                            accept="image/*"
+                            onChange={(e) => {
+                              const file = e.target.files[0];
+                              setimg3(file);
+                              setSelectedEvent({
+                                ...selectedEvent,
+                                img: URL.createObjectURL(file),
+                              });
+                            }}
+                          />
+                        </Form.Group>
+                      </Col>
+
+                      <Col md={6}>
+                        <Form.Group controlId="bg_img">
+                          <Form.Label>Background Image</Form.Label>
+                          <Form.Control
+                            type="file"
+                            accept="image/*"
+                            onChange={(e) => {
+                              const file = e.target.files[0];
+                              setbg_img(file);
+                              setSelectedEvent({
+                                ...selectedEvent,
+                                img: URL.createObjectURL(file),
+                              });
+                            }}
+                          />
+                        </Form.Group>
+                      </Col>
+
                       <Form.Group controlId="location">
                         <Form.Label>Location Description</Form.Label>
                         <Form.Control
