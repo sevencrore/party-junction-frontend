@@ -136,6 +136,8 @@ const ListEvent = () => {
     formData.append("img3", img3);
     formData.append("bg_img", bg_img);
     formData.append("full", selectedEvent.full);
+    formData.append("area", selectedEvent.area);
+    formData.append("date", selectedEvent.date);
     
 
     axios
@@ -281,7 +283,12 @@ const ListEvent = () => {
                             <Form.Control
                               type="text"
                               value={selectedEvent.title}
-                              readOnly
+                              onChange={(e) =>
+                                setSelectedEvent({
+                                  ...selectedEvent,
+                                  title: e.target.value,
+                                })
+                              }
                             />
                           </Form.Group>
                         </Col>
@@ -476,6 +483,38 @@ const ListEvent = () => {
                           />
                         </Form.Group>
                       </Col>
+
+                      <Col md={6}>
+                          <Form.Group controlId="date">
+                            <Form.Label>Event Date</Form.Label>
+                            <Form.Control
+                              type="date"
+                              value={selectedEvent.date}
+                              onChange={(e) =>
+                                setSelectedEvent({
+                                  ...selectedEvent,
+                                  date: e.target.value,
+                                })
+                              }
+                            />
+                          </Form.Group>
+                        </Col>
+                    
+                      <Col md={6}>
+                          <Form.Group controlId="area">
+                            <Form.Label>Area</Form.Label>
+                            <Form.Control
+                              type="text"
+                              value={selectedEvent.area}
+                              onChange={(e) =>
+                                setSelectedEvent({
+                                  ...selectedEvent,
+                                  area: e.target.value,
+                                })
+                              }
+                            />
+                          </Form.Group>
+                        </Col>
 
                       <Form.Group controlId="location">
                         <Form.Label>Location Description</Form.Label>
